@@ -14,7 +14,7 @@ public class ConsumoAPI {
 
     public String ObterDados(String endereco){
 
-        endereco= "http://www.omdbapi.com/?t=" + URLEncoder.encode(endereco, StandardCharsets.UTF_8) +"&apiKey=53de85b5";
+        //endereco= "http://www.omdbapi.com/?t=" + URLEncoder.encode(endereco, StandardCharsets.UTF_8) +"&apiKey=53de85b5";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
