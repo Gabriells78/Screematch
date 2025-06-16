@@ -14,7 +14,7 @@ import static br.com.alura.screenmatch.service.ConsultaMyMemory.*;
 
 @Entity
 @Table(name="series")
-public class Serie {
+public class   Serie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -36,7 +36,8 @@ public class Serie {
 
     private String sinopse;
 
-    @Transient
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
     private List<Episodio> episodios = new ArrayList<>();
 
     public Serie(){}
@@ -124,18 +125,21 @@ public class Serie {
     }
 
     public void setEpisodios(List<Episodio> episodios) {
+        episodios.forEach(e -> e.setSerie(this));
         this.episodios = episodios;
     }
 
     public String toString (){
         return
-                "\nGenero: " + getGenero()+
-                        "\nNome da serie : " + getTitulo() +
-                        "\nTotal de temporadas: " + getTotalTemporadas()
-                        + "\nAvaliacao: " +
-                        getAvaliacao() + "\nElenco: " +
-                        getElenco()+ "\nPoster: " + getPoster() +
-                        "\nSinopse: "+ getSinopse();
+                "genero: " +genero+
+                        ", titulo : " + titulo+'\''+
+                        ", temporada: " + totalTemporadas
+                        + ", avaliacao: " +avaliacao +
+
+                        ", elenco: " + elenco+ '\''+
+                        ", poster: " + poster +'\''+
+                        ", sinopse: "+ sinopse+'\''+
+                        ", episodios: "+ episodios+'\'';
     }
 
 }
